@@ -1,6 +1,5 @@
 package repository;
 
-import model.Current;
 import model.Location;
 import org.hibernate.query.Query;
 

@@ -1,144 +1,69 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.*;
+
+import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "current")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+
+
 public class Current {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
+    @Column(name = "temperature")
     private int temperature;
 
+    @Column(name = "wind_speed")
     private int wind_speed;
 
+    @Column(name = "wind_degree")
     private int wind_degree;
 
+    @Column(name = "wind_dir")
     private String wind_dir;
 
+    @Column(name = "pressure")
     private Double pressure;
 
+    @Column(name = "humidity")
     private int humidity;
 
+    @Column(name = "feelslike")
     private int feelslike;
 
+    @Column(name = "visibility")
     private int visibility;
 
+    @Column(name = "city")
     private String city;
 
+    @Column(name = "date")
     private Date date;
-
-    public Current() {
-    }
-
-    public int getWind_degree() {
-        return wind_degree;
-    }
-
-    public void setWind_degree(int wind_degree) {
-        this.wind_degree = wind_degree;
-    }
-
-    public Double getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(Double pressure) {
-        this.pressure = pressure;
-    }
-
-    public int getFeelslike() {
-        return feelslike;
-    }
-
-    public void setFeelslike(int feelslike) {
-        this.feelslike = feelslike;
-    }
-
-    public int getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(int visibility) {
-        this.visibility = visibility;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(int temperature) {
-        this.temperature = temperature;
-    }
-
-    public int getWind_speed() {
-        return wind_speed;
-    }
-
-    public void setWind_speed(int wind_speed) {
-        this.wind_speed = wind_speed;
-    }
-
-    public String getWind_dir() {
-        return wind_dir;
-    }
-
-    public void setWind_dir(String wind_dir) {
-        this.wind_dir = wind_dir;
-    }
-
-    public int getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     @Override
     public String toString() {
-        return "Current{" +
+        return "\nWeather data: \n" +
                 "id=" + id +
-                ", temperature=" + temperature +
-                ", wind_speed=" + wind_speed +
-                ", wind_degree=" + wind_degree +
-                ", wind_dir='" + wind_dir + '\'' +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                ", feelslike=" + feelslike +
-                ", visibility=" + visibility +
-                ", city='" + city + '\'' +
-                ", date=" + date +
-                '}';
+                "\ntemperature= " + temperature +
+                "\nwind_speed= " + wind_speed +
+                "\nwind_degree= " + wind_degree +
+                "\nwind_dir= '" + wind_dir + '\'' +
+                "\npressure= " + pressure +
+                "\nhumidity= " + humidity +
+                "\nfeelslike= " + feelslike +
+                "\nvisibility= " + visibility +
+                "\ncity= '" + city + '\'' +
+                "\ndate= " + date+"\n"
+                ;
     }
 }

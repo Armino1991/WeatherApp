@@ -3,7 +3,6 @@ package repository;
 import model.Current;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Scanner;
 
 public class CurrentRepository {

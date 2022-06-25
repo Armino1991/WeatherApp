@@ -5,17 +5,11 @@ import com.squareup.okhttp.HttpUrl;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import model.Current;
 import model.Location;
 import model.LocationModel;
-import model.WeatherModel;
-import repository.CurrentRepository;
 import repository.LocationRepository;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class LocationService {
