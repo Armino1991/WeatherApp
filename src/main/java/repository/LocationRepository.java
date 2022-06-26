@@ -30,7 +30,7 @@ public class LocationRepository {
 
         entityManager.getTransaction().begin();
 
-        String query ="Select distinct s.name From Location s";
+        String query ="Select distinct  s.name  From Location s";
         Query query1 = (Query) entityManager.createQuery(query);
         List<Location> locations =query1.getResultList();
 

@@ -9,7 +9,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Location {
 
     @Id
@@ -32,4 +31,15 @@ public class Location {
     @Column(name = "local_time")
     private String localtime;
 
+    @Override
+    public String toString() {
+        return "\nLocation \n" +
+                "\nid=" + id +
+                "\nname='" + name + '\'' +
+                "\ncountry='" + country + '\'' +
+                "\nlat=" + lat +
+                "\nlon=" + lon +
+                "\nlocaltime='" + localtime + '\''
+                ;
+    }
 }

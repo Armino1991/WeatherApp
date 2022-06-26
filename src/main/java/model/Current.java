@@ -11,8 +11,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-
-
 public class Current {
 
     @Id

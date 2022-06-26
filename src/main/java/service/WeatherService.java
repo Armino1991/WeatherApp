@@ -16,8 +16,6 @@ import java.util.Scanner;
 
 public class WeatherService {
 
-    private static final String BASE_URL = "http://api.weatherstack.com";
-    private static final String ACCESS_KEY = "22f972b8e72a81d190e4092c7dd6c1bd";
     private CurrentRepository currentRepository;
 
     public WeatherService (CurrentRepository currentRepository){
@@ -28,23 +26,10 @@ public class WeatherService {
 
     }
 
-    public void getWeatherData() throws IOException {
-        System.out.println("----PLEASE GIVE THE NAME OF THE CITY TO GET WEATHER DATA :----");
-        Scanner scanner = new Scanner(System.in);
-        String nameOfCity = scanner.next();
-        OkHttpClient client = new OkHttpClient();
+    public void getWeatherData(String city) throws IOException {
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + "/current").newBuilder();
-        urlBuilder.addQueryParameter("access_key", ACCESS_KEY);
-        urlBuilder.addQueryParameter("query",nameOfCity);
-
-        String url = urlBuilder.build().toString();
-
-        Request request = new Request.Builder().url(url).build();
-        Response response = client.newCall(request).execute();
-        String responseString = response.body().string();
-
-        System.out.println(responseString);
+      HttpService httpService = new HttpService();
+      String responseString = httpService.requestAPI(city);
 
         Gson gson = new Gson();
         WeatherModel weatherModel =
@@ -60,27 +45,16 @@ public class WeatherService {
         current.setPressure(weatherModel.getCurrent().getPressure());
         current.setFeelslike(weatherModel.getCurrent().getFeelslike());
         current.setVisibility(weatherModel.getCurrent().getVisibility());
-        current.setCity(nameOfCity);
+        current.setCity(city);
         current.setDate(Date.valueOf(LocalDate.now()));
 
         currentRepository.saveCurrent(current);
     }
 
-    public void getWeatherNow() throws IOException {
-        System.out.println("----PLEASE GIVE THE NAME OF THE CITY TO GET WEATHER DATA :----");
-        Scanner scanner = new Scanner(System.in);
-        String nameOfCity = scanner.next();
-        OkHttpClient client = new OkHttpClient();
+    public void getWeatherNow(String nameOfCity) throws IOException {
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + "/current").newBuilder();
-        urlBuilder.addQueryParameter("access_key", ACCESS_KEY);
-        urlBuilder.addQueryParameter("query",nameOfCity);
-
-        String url = urlBuilder.build().toString();
-
-        Request request = new Request.Builder().url(url).build();
-        Response response = client.newCall(request).execute();
-        String responseString = response.body().string();
+        HttpService httpService = new HttpService();
+        String responseString = httpService.requestAPI(nameOfCity);
 
         Gson gson = new Gson();
         WeatherModel weatherModel =

@@ -54,7 +54,6 @@ public class TestApp {
             case EXIT:
                 exit();
                 break;
-
             default:
                 System.out.print("\n------Wrong choose !----");
         }
@@ -70,14 +69,21 @@ public class TestApp {
 
     public void addLocation() throws IOException {
 
+        System.out.println("----PLEASE GIVE THE NAME OF THE CITY TO BE ADDED :----");
+        Scanner scanner = new Scanner(System.in);
+        String nameOfCity = scanner.next();
+
         LocationService locationService = new LocationService(locationRepository);
-        locationService.getLocationData();
+        locationService.getLocationData(nameOfCity);
 
         System.out.println("----LOCATION ADDED SUCCESSFULLY !----");
 
+        System.out.println("----PLEASE GIVE THE NAME OF THE CITY TO GET WEATHER DATA :----");
+        Scanner scanner1 = new Scanner(System.in);
+        String city = scanner1.next();
 
         WeatherService weatherService = new WeatherService(currentRepository);
-        weatherService.getWeatherData();
+        weatherService.getWeatherData(city);
 
         System.out.println("----WEATHER DATA ADDED SUCCESSFULLY !----");
 
@@ -89,6 +95,7 @@ public class TestApp {
     }
 
     public void displayAllLocations() throws IOException {
+
         List<Location> locations =locationRepository.getLocations();
         System.out.println("----LOCATIONS ARE LISTED AS BELOW :----");
         System.out.println(locations);
@@ -102,8 +109,15 @@ public class TestApp {
 
     public void getWeatherFromLocation() throws IOException {
 
+        System.out.println("----PLEASE GIVE THE LOCATION :----");
+        Scanner scanner = new Scanner(System.in);
+        String city = scanner.next();
 
-        Current current =currentRepository.getCurrentByLocation();
+        System.out.println("----PLEASE GIVE THE DATE ON FORMAT yyyy-mm-dd :----");
+        Scanner scanner1 = new Scanner(System.in);
+        String date = scanner1.next();
+
+        Current current =currentRepository.getCurrentByLocation(city, date);
         System.out.println("----WEATHER DATA FOR GIVEN LOCATION ARE AS BELOW :----");
         System.out.println(current);
 
@@ -116,8 +130,12 @@ public class TestApp {
     }
 
     public void getCurrentWeather() throws IOException {
+
+        System.out.println("----PLEASE GIVE THE NAME OF THE CITY TO GET WEATHER DATA :----");
+        Scanner scanner = new Scanner(System.in);
+        String nameOfCity = scanner.next();
         WeatherService weatherService = new WeatherService();
-        weatherService.getWeatherNow();
+        weatherService.getWeatherNow(nameOfCity);
 
         System.out.println("\n----MAIN MENU----");
 

@@ -3,12 +3,12 @@ package repository;
 import model.Current;
 
 import javax.persistence.*;
-import java.util.Scanner;
 
 public class CurrentRepository {
 
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("WeatherEM");
+
     public Current saveCurrent(Current current) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("WeatherEM");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -21,15 +21,7 @@ public class CurrentRepository {
         return current;
     }
 
-    public Current getCurrentByLocation(){
-        System.out.println("----PLEASE GIVE THE LOCATION :----");
-        Scanner scanner = new Scanner(System.in);
-        String city = scanner.next();
-
-        System.out.println("----PLEASE GIVE THE DATE ON FORMAT yyyy-mm-dd :----");
-        Scanner scanner1 = new Scanner(System.in);
-        String date = scanner1.next();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("WeatherEM");
+    public Current getCurrentByLocation(String city, String date){
 
         EntityManager entityManager = emf.createEntityManager();
 
